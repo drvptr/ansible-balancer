@@ -1,17 +1,15 @@
 ---
 - name: Remove default config
-  file:
-    path: /etc/nginx/sites-enabled/default
-    state: absent
+  command: mv /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default.bak
 
 - name: Copy vhosts to place
   template:
     src: vhosts.j2
-    dest: "/etc/nginx/sites-enabled/{{ item.name }}.conf"
-  with_items: balancer_vhosts
+    dest: "/etc/nginx/sites-enabled/{{ item['name'] }}.conf"
+  loop: "{{ balancer_vhosts }}"
   notify: restart nginx
 
-- name: Enable init.d
+- name: Enable nginx service
   service:
     name: nginx
     state: started

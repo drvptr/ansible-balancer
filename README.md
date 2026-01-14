@@ -10,8 +10,9 @@ Latest Ansible from pip
 
 ## Platforms
 
-- Ubuntu
-- Debian
+- ~~Ubuntu~~
+- ~~Debian~~
+- RedHat Linux 9.6
 
 ## Role Variables
 
@@ -78,3 +79,7 @@ MIT
 ## Author Information
 
 Roman Gorodeckij ([holms@holms.lt](mailto:holms@holms.lt))
+
+## Forked by
+
+Derbyshev Petr ([drvpotr@gmail.com](mailto:drvpotr@gmail.com))

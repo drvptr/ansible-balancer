@@ -1,13 +1,7 @@
 ---
 
-- name: nginx | Add repo
-  apt_repository:
-    repo: "ppa:nginx/stable"
-    state: present
-    update_cache: yes
-
 - name: Install nginx
-  apt:
+  yum:
     name: nginx
-    state: installed
+    state: present
 
