@@ -1,13 +1,25 @@
 ---
-- name: Remove default config
-  command: mv /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default.bak
-
 - name: Copy vhosts to place
   template:
     src: vhosts.j2
-    dest: "/etc/nginx/sites-enabled/{{ item['name'] }}.conf"
+    dest: "/etc/nginx/conf.d/{{ item['name'] }}.conf"
   loop: "{{ balancer_vhosts }}"
   notify: restart nginx
+
+- name: Configure firewall
+  firewalld:
+    service: http
+    state: enabled
+    permanent: yes
+  notify: restart firewall
+
+- meta: flush_handlers
+
+- name: Allow nginx connect to webservers
+  seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
 
 - name: Enable nginx service
   service:
