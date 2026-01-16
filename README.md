@@ -2,7 +2,7 @@
 
 Load Balancer with nginx role.
 
-This role is only for SSL termination setup. Everything from HTTP will be redirected to HTTPS. You can fork and change that or you can contribute to make this optional.
+~~This role is only for SSL termination setup. Everything from HTTP will be redirected to HTTPS. You can fork and change that or you can contribute to make this optional.~~
 
 ## Requirements
 
